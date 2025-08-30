@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SocketHandler;
+import java.net.HttpURLConnection;
 
 /**
  *
@@ -35,14 +36,16 @@ public class CapturaRecursosWeb {
 
             try {
                 URL url = new URL(stringURL);
-                URLConnection connection = url.openConnection();
+                // Usa HttpURLConnection para poder definir o User-Agent
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestProperty("User-Agent", "Mozilla/5.0");
+
                 BufferedReader in = new BufferedReader(
-                        new InputStreamReader(
-                        connection.getInputStream()));
+                        new InputStreamReader(connection.getInputStream()));
 
                 String inputLine;
+                StringBuilder sb = new StringBuilder();
 
-                StringBuffer sb = new StringBuffer();
                 while ((inputLine = in.readLine()) != null) sb.append(inputLine+"\n");
                 resposta = sb.toString();
                 resultado.add(resposta);
