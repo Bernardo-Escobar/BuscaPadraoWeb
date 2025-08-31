@@ -118,6 +118,13 @@ public class Main {
         //tabela de transição de AFD para reconhecimento números de dois dígitos
         int[][] matriz = new int[7][36];
 
+        // Inicializa todas as posições com -1 (sem transição)
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 36; j++) {
+                matriz[i][j] = -1;
+                }
+            }
+
         //transições de q0
         matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'A')] = get_string_ref(estados, "q1");
         matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'B')] = get_string_ref(estados, "q1");
