@@ -51,6 +51,8 @@ public class Main {
         //instancia e usa objeto que captura código-fonte de páginas Web
         CapturaRecursosWeb crw = new CapturaRecursosWeb();
         crw.getListaRecursos().add("https://www.keplaca.com/");
+        //crw.getListaRecursos().add("https://garagem360.com.br/as-placas-de-carros-com-combinacoes-mais-inusitadas-e-bizarras/");
+        //crw.getListaRecursos().add("https://pt.wikipedia.org/wiki/Placas_de_identifica%C3%A7%C3%A3o_de_ve%C3%ADculos_no_Brasil");
         ArrayList<String> listaCodigos = crw.carregarRecursos();
 
         String codigoHTML = listaCodigos.get(0);
