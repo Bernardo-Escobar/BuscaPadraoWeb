@@ -100,7 +100,7 @@ public class Main {
 
 
         //mapa de estados
-        String[] estados = new String[7];
+        String[] estados = new String[8];
         estados[0] = "q0";
         estados[1] = "q1";
         estados[2] = "q2";
@@ -108,12 +108,13 @@ public class Main {
         estados[4] = "q4";
         estados[5] = "q5";
         estados[6] = "q6";
+        estados[7] = "q7";
 
         String estado_inicial = "q0";
 
         //estados finais
         String[] estados_finais = new String[1];
-        estados_finais[0] = "q6";
+        estados_finais[0] = "q7";
 
         //tabela de transição de AFD para reconhecimento números de dois dígitos
         int[][] matriz = new int[7][36];
@@ -255,16 +256,16 @@ public class Main {
         matriz[get_string_ref(estados, "q5")][get_char_ref(alfabeto, '9')] = get_string_ref(estados, "q6");
 
         //transições de q6
-        matriz[get_string_ref(estados, "q6")][get_char_ref(alfabeto, '0')] = -1;
-        matriz[get_string_ref(estados, "q6")][get_char_ref(alfabeto, '1')] = -1;
-        matriz[get_string_ref(estados, "q6")][get_char_ref(alfabeto, '2')] = -1;
-        matriz[get_string_ref(estados, "q6")][get_char_ref(alfabeto, '3')] = -1;
-        matriz[get_string_ref(estados, "q6")][get_char_ref(alfabeto, '4')] = -1;
-        matriz[get_string_ref(estados, "q6")][get_char_ref(alfabeto, '5')] = -1;
-        matriz[get_string_ref(estados, "q6")][get_char_ref(alfabeto, '6')] = -1;
-        matriz[get_string_ref(estados, "q6")][get_char_ref(alfabeto, '7')] = -1;
-        matriz[get_string_ref(estados, "q6")][get_char_ref(alfabeto, '8')] = -1;
-        matriz[get_string_ref(estados, "q6")][get_char_ref(alfabeto, '9')] = -1;
+        matriz[get_string_ref(estados, "q6")][get_char_ref(alfabeto, '0')] = get_string_ref(estados, "q7");
+        matriz[get_string_ref(estados, "q6")][get_char_ref(alfabeto, '1')] = get_string_ref(estados, "q7");
+        matriz[get_string_ref(estados, "q6")][get_char_ref(alfabeto, '2')] = get_string_ref(estados, "q7");
+        matriz[get_string_ref(estados, "q6")][get_char_ref(alfabeto, '3')] = get_string_ref(estados, "q7");
+        matriz[get_string_ref(estados, "q6")][get_char_ref(alfabeto, '4')] = get_string_ref(estados, "q7");
+        matriz[get_string_ref(estados, "q6")][get_char_ref(alfabeto, '5')] = get_string_ref(estados, "q7");
+        matriz[get_string_ref(estados, "q6")][get_char_ref(alfabeto, '6')] = get_string_ref(estados, "q7");
+        matriz[get_string_ref(estados, "q6")][get_char_ref(alfabeto, '7')] = get_string_ref(estados, "q7");
+        matriz[get_string_ref(estados, "q6")][get_char_ref(alfabeto, '8')] = get_string_ref(estados, "q7");
+        matriz[get_string_ref(estados, "q6")][get_char_ref(alfabeto, '9')] = get_string_ref(estados, "q7");
 
         
         int estado = get_string_ref (estados, estado_inicial);
@@ -286,7 +287,7 @@ public class Main {
                 // se o estado anterior foi um estado final
                 if (get_string_ref(estados_finais, estados[estado_anterior]) != -1){
                     //se a palavra não é vazia adiciona palavra reconhecida
-                    if ( ! palavra.equals("")){
+                    if (!palavra.equals("")){
                         palavras_reconhecidas.add(palavra);
                     }
                     // se ao analisar este caracter não houve transição
@@ -299,13 +300,6 @@ public class Main {
             }else{
                 //se houver transição válida, adiciona caracter a palavra
                 palavra += codigoHTML.charAt(i);
-            }
-        }
-
-        //TRATAMENTO FINAL: se acabou em estado final, salva última palavra
-        if (get_string_ref(estados_finais, estados[estado]) != -1) {
-            if (!palavra.equals("")) {
-                palavras_reconhecidas.add(palavra);
             }
         }
 
