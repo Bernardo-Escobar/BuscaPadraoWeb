@@ -34,8 +34,6 @@ public class Main {
         return -1;
     }
 
-    
-
     //retorna o próximo estado, dado o estado atual e o símbolo lido
     public static int proximo_estado(char[] alfabeto, int[][] matriz,int estado_atual,char simbolo){
         int simbol_indice = get_char_ref(alfabeto, simbolo);
@@ -118,13 +116,6 @@ public class Main {
 
         //tabela de transição de AFD para reconhecimento números de dois dígitos
         int[][] matriz = new int[7][36];
-
-        // Inicializa todas as posições com -1 (sem transição)
-        for (int i = 0; i < 7; i++) {
-            for (int j = 0; j < 36; j++) {
-                matriz[i][j] = -1;
-                }
-            }
 
         //transições de q0
         matriz[get_string_ref(estados, "q0")][get_char_ref(alfabeto, 'A')] = get_string_ref(estados, "q1");
